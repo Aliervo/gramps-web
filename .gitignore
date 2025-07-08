@@ -20,3 +20,13 @@
 /_site/
 /dist/
 /out-tsc/
+
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml

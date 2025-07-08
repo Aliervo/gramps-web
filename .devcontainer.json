@@ -1,0 +1,20 @@
+{
+  "containerEnv": {
+    "HOME": "/home/vscode"
+  },
+  "containerUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "mkhl.direnv"
+      ]
+    }
+  },
+  "image": "ghcr.io/cachix/devenv/devcontainer:latest",
+  "overrideCommand": false,
+  "runArgs": [
+    "--userns=keep-id"
+  ],
+  "updateContentCommand": "devenv test",
+  "updateRemoteUserUID": true
+}
