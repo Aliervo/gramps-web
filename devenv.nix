@@ -116,6 +116,7 @@
         cp -a .devenv/state/venv/share/doc/gramps/example/gramps/. ./api/data/media/
       '';
       status = "[ -d ./api/data/grampsdb ] && exit 0 || exit 1";
+      after = [ "api:pipInstall" ];
     };
     "api:createUsers" = {
       description = "Create a test user for each role if the user db does not exist.";
@@ -126,6 +127,7 @@
         python3 -m gramps_webapi user add member member --fullname Member --role 1
       '';
       status = "[ -f ./api/instance/users.sqlite ] && exit 0 || exit 1";
+      after = [ "api:pipInstall" ];
     };
     "api:pipInstall" = {
       description = "Install api dependencies via pip.";
@@ -135,11 +137,11 @@
         pip install -e ./api/.[ai]
       '';
       status = "gramps --version";
-      after = [ "devenv:python:virtualenv" ];
     };
     "devenv:enterShell" = {
-      after = [ "api:pipInstall" ];
+      after = [ ];
       before = [
+        "api:pipInstall"
         "api:importData"
         "api:createUsers"
       ];
