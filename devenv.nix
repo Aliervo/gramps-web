@@ -98,6 +98,15 @@
 
   # https://devenv.sh/tasks/
   tasks = {
+    "api:initSubmodule" = {
+      description = "Initialize the git submodule";
+      exec = ''
+        git submodule init
+        git submodule update
+      '';
+      before = [ "api:pipInstall" ];
+      status = "[ -f ./api/README.md ] && exit 0 || exit 1";
+    };
     "api:importData" = {
       description = "Copy gramps sample data to our data folder.";
       exec = ''
@@ -121,6 +130,7 @@
     "api:pipInstall" = {
       description = "Install api dependencies via pip.";
       exec = ''
+        export TMPDIR=/tmp
         pip install -r api/requirements-dev.txt
         pip install -e ./api/.[ai]
       '';
