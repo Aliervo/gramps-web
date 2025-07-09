@@ -25,6 +25,14 @@
       "runOptions": {
         "instanceLimit": 1
       }
+    },
+    {
+      "label": "Run Development Stack",
+      "type": "shell",
+      "command": "devenv up",
+      "runOptions": {
+        "instanceLimit": 1
+      }
     }
   ]
 }
