@@ -111,9 +111,9 @@
       description = "Copy gramps sample data to our data folder.";
       exec = ''
         mkdir -p ./api/data/grampsdb
-        gramps -C Gramps\ Web -i .devenv/state/venv/share/doc/gramps/example/gramps/example.gramps --config=database.backend:sqlite --config=database.path:./api/data/grampsdb
+        gramps -C Gramps\ Web -i $DEVENV_STATE/venv/share/doc/gramps/example/gramps/example.gramps --config=database.backend:sqlite --config=database.path:./api/data/grampsdb
         mkdir -p ./api/data/media
-        cp -a .devenv/state/venv/share/doc/gramps/example/gramps/. ./api/data/media/
+        cp -a $DEVENV_STATE/venv/share/doc/gramps/example/gramps/. ./api/data/media/
       '';
       status = "[ -d ./api/data/grampsdb ] && exit 0 || exit 1";
       after = [ "api:pipInstall" ];
